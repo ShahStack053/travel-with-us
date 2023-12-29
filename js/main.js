@@ -100,11 +100,234 @@
             top: offsetTop - headerOffset,  // Subtract header height to adjust for fixed header
             behavior: 'smooth'
             });
-            // document.querySelector(this.getAttribute('href')).scrollIntoView({
-            //     behavior: 'smooth'
-            // });
         });
     });
+
+var currentTrips = 0;
+const tripsToShowEachTime = 3;
+  const dummyTrips = [
+    {
+        name: "Tropical Paradise",
+        location: "Murree",
+        duration: 3,
+        persons: 2,
+        price: 149.00,
+        image: "img/package-1.jpg",
+        description: "Experience the serene beauty of Murree's beaches and rich cultural heritage. Perfect for a quick getaway."
+    },
+    {
+        name: "Adventure Awaits",
+        location: "Kaghan",
+        duration: 4,
+        persons: 2,
+        price: 139.00,
+        image: "img/package-2.jpg",
+        description: "Explore the diverse landscapes of Kaghan, from volcanic mountains to lush rainforests."
+    },
+    {
+        name: "City Lights",
+        location: "Gilgit",
+        duration: 5,
+        persons: 2,
+        price: 189.00,
+        image: "img/package-3.jpg",
+        description: "Discover the vibrant city life of Gilgit and its stunning skyline."
+    },
+    {
+        name: "Tropical Paradise",
+        location: "Murree",
+        duration: 3,
+        persons: 2,
+        price: 149.00,
+        image: "img/package-1.jpg",
+        description: "Experience the serene beauty of Murree's beaches and rich cultural heritage. Perfect for a quick getaway."
+    },
+    {
+        name: "Adventure Awaits",
+        location: "Kaghan",
+        duration: 4,
+        persons: 2,
+        price: 139.00,
+        image: "img/package-2.jpg",
+        description: "Explore the diverse landscapes of Kaghan, from volcanic mountains to lush rainforests."
+    },
+    {
+        name: "City Lights",
+        location: "Gilgit",
+        duration: 5,
+        persons: 2,
+        price: 189.00,
+        image: "img/package-3.jpg",
+        description: "Discover the vibrant city life of Gilgit and its stunning skyline."
+    },
+    {
+        name: "Tropical Paradise",
+        location: "Murree",
+        duration: 3,
+        persons: 2,
+        price: 149.00,
+        image: "img/package-1.jpg",
+        description: "Experience the serene beauty of Murree's beaches and rich cultural heritage. Perfect for a quick getaway."
+    },
+    {
+        name: "Adventure Awaits",
+        location: "Kaghan",
+        duration: 4,
+        persons: 2,
+        price: 139.00,
+        image: "img/package-2.jpg",
+        description: "Explore the diverse landscapes of Kaghan, from volcanic mountains to lush rainforests."
+    },
+    {
+        name: "City Lights",
+        location: "Gilgit",
+        duration: 5,
+        persons: 2,
+        price: 189.00,
+        image: "img/package-3.jpg",
+        description: "Discover the vibrant city life of Gilgit and its stunning skyline."
+    },
+   
+];
+//     function createTripCards(trips) {
+//     var tripContainer = $('#trips .row');
+
+//     trips.forEach(function(trip) {
+//         var tripCardHtml = `
+//             <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+//                 <div class="package-item">
+//                     <div class="overflow-hidden">
+//                         <img class="img-fluid" src="${trip.image}" alt="">
+//                     </div>
+//                     <div class="d-flex border-bottom">
+//                         <small class="flex-fill text-center border-end py-2"><i class="fa fa-map-marker-alt text-primary me-2"></i>${trip.location}</small>
+//                         <small class="flex-fill text-center border-end py-2"><i class="fa fa-calendar-alt text-primary me-2"></i>${trip.duration} days</small>
+//                         <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>${trip.persons} Person</small>
+//                     </div>
+//                     <div class="text-center p-4">
+//                         <h3 class="mb-0">$${trip.price}</h3>
+//                         <p>${trip.description}</p>
+//                         <div class="d-flex justify-content-center mb-2">
+//                             <a href="#" class="btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;">Read More</a>
+//                             <a href="#" class="btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">Book Now</a>
+//                         </div>
+//                     </div>
+//                 </div>
+//             </div>
+//         `;
+
+//         tripContainer.append(tripCardHtml);
+//     });
+// }
+function createTripCards(trips) {
+    var container = document.getElementById('tripContainer');
+    container.innerHTML = ''; // Clear existing content
+
+    for (var i = 0; i < currentTrips && i < trips.length; i++) {
+        var trip = trips[i];
+var cardHtml = `
+    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="package-item">
+            <div class="overflow-hidden">
+                <img class="img-fluid" src="${trip.image}" alt="${trip.name}">
+            </div>
+            <div class="d-flex border-bottom">
+                <small class="flex-fill text-center border-end py-2">
+                    <i class="fa fa-map-marker-alt text-primary me-2"></i>${trip.location}
+                </small>
+                <small class="flex-fill text-center border-end py-2">
+                    <i class="fa fa-calendar-alt text-primary me-2"></i>${trip.duration} days
+                </small>
+                <small class="flex-fill text-center py-2">
+                    <i class="fa fa-user text-primary me-2"></i>${trip.persons} Person
+                </small>
+            </div>
+            <div class="text-center p-4">
+                <h3 class="mb-0">$${trip.price.toFixed(2)}</h3>
+                <p>${trip.description}</p>
+                <div class="d-flex justify-content-center mb-2">
+                    <a href="#" class="btn btn-sm btn-primary px-3 border-end">Check Weater</a>
+                    <a href="#" class="btn btn-sm btn-primary px-3">Book Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+`;
+        container.innerHTML += cardHtml;
+    }
+     updateShowMoreButton(trips); // Update the Show More button visibility
+    }
     
+    function showMoreTrips() {
+    currentTrips += tripsToShowEachTime;
+    createTripCards(dummyTrips); // Assuming dummyTrips is your data array
+    }
+    
+    // Function to update the visibility of the Show More button
+function updateShowMoreButton(trips) {
+    var showMoreBtn = document.getElementById('showMoreBtn');
+    if (currentTrips < trips.length) {
+        showMoreBtn.style.display = 'block'; // Show the button
+    } else {
+        showMoreBtn.style.display = 'none'; // Hide the button if no more trips are available
+    }
+}
+
+
+    function fetchTrips() {
+    // fetch('URL_OF_YOUR_API') // Replace with your API URL
+    //     .then(response => response.json())
+    //     .then(data => {
+    //         createTripCards(data);
+    //     })
+        //     .catch(error => console.error('Error:', error));
+        const dummyTrips = [
+    {
+        name: "Tropical Paradise",
+        location: "Murree",
+        duration: 3,
+        persons: 2,
+        price: 149.00,
+        image: "img/package-1.jpg",
+        description: "Experience the serene beauty of Murree's beaches and rich cultural heritage. Perfect for a quick getaway."
+    },
+    {
+        name: "Adventure Awaits",
+        location: "Kaghan",
+        duration: 4,
+        persons: 2,
+        price: 139.00,
+        image: "img/package-2.jpg",
+        description: "Explore the diverse landscapes of Kaghan, from volcanic mountains to lush rainforests."
+    },
+    {
+        name: "City Lights",
+        location: "Gilgit",
+        duration: 5,
+        persons: 2,
+        price: 189.00,
+        image: "img/package-3.jpg",
+        description: "Discover the vibrant city life of Gilgit and its stunning skyline."
+    },
+   
+];
+
+// Function to create trip cards can then use this dummy data
+        createTripCards(dummyTrips);
+    }
+    
+    // $(document).ready(function() {
+    //     // Existing code ...
+
+    //     // Fetch and display trips
+    //     fetchTrips();
+    // });
+    document.getElementById('showMoreBtn').addEventListener('click', showMoreTrips);
+
+// Initial load
+$(document).ready(function() {
+    currentTrips = tripsToShowEachTime;
+    createTripCards(dummyTrips);
+});
 })(jQuery);
 
