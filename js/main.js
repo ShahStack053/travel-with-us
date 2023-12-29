@@ -117,12 +117,12 @@ const tripsToShowEachTime = 3;
     },
     {
         name: "Adventure Awaits",
-        location: "Kaghan",
+        location: "Kashmir",
         duration: 4,
         persons: 2,
         price: 139.00,
         image: "img/package-2.jpg",
-        description: "Explore the diverse landscapes of Kaghan, from volcanic mountains to lush rainforests."
+        description: "Explore the diverse landscapes of Kashmir, from volcanic mountains to lush rainforests."
     },
     {
         name: "City Lights",
@@ -144,12 +144,12 @@ const tripsToShowEachTime = 3;
     },
     {
         name: "Adventure Awaits",
-        location: "Kaghan",
+        location: "Kashmir",
         duration: 4,
         persons: 2,
         price: 139.00,
         image: "img/package-2.jpg",
-        description: "Explore the diverse landscapes of Kaghan, from volcanic mountains to lush rainforests."
+        description: "Explore the diverse landscapes of Kashmir, from volcanic mountains to lush rainforests."
     },
     {
         name: "City Lights",
@@ -171,12 +171,12 @@ const tripsToShowEachTime = 3;
     },
     {
         name: "Adventure Awaits",
-        location: "Kaghan",
+        location: "Kashmir",
         duration: 4,
         persons: 2,
         price: 139.00,
         image: "img/package-2.jpg",
-        description: "Explore the diverse landscapes of Kaghan, from volcanic mountains to lush rainforests."
+        description: "Explore the diverse landscapes of Kashmir, from volcanic mountains to lush rainforests."
     },
     {
         name: "City Lights",
@@ -219,45 +219,186 @@ const tripsToShowEachTime = 3;
 //         tripContainer.append(tripCardHtml);
 //     });
 // }
-function createTripCards(trips) {
+// function createTripCards(trips) {
+//     var container = document.getElementById('tripContainer');
+//     container.innerHTML = ''; // Clear existing content
+
+//     for (var i = 0; i < currentTrips && i < trips.length; i++) {
+//         var trip = trips[i];
+// var cardHtml = `
+//     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+//         <div class="package-item">
+//             <div class="overflow-hidden">
+//                 <img class="img-fluid" src="${trip.image}" alt="${trip.name}">
+//             </div>
+//             <div class="d-flex border-bottom">
+//                 <small class="flex-fill text-center border-end py-2">
+//                     <i class="fa fa-map-marker-alt text-primary me-2"></i>${trip.location}
+//                 </small>
+//                 <small class="flex-fill text-center border-end py-2">
+//                     <i class="fa fa-calendar-alt text-primary me-2"></i>${trip.duration} days
+//                 </small>
+//                 <small class="flex-fill text-center py-2">
+//                     <i class="fa fa-user text-primary me-2"></i>${trip.persons} Person
+//                 </small>
+//             </div>
+//             <div class="text-center p-4">
+//                 <h3 class="mb-0">$${trip.price.toFixed(2)}</h3>
+//                 <p>${trip.description}</p>
+//                 <div class="d-flex justify-content-center mb-2">
+//                     <a href="#" class="btn btn-sm btn-primary px-3 border-end">Check Weater</a>
+//                     <a href="#" class="btn btn-sm btn-primary px-3">Book Now</a>
+//                 </div>
+//             </div>
+//         </div>
+//     </div>
+// `;
+//         container.innerHTML += cardHtml;
+//     }
+//      updateShowMoreButton(trips); // Update the Show More button visibility
+//     }
+    
+    function createTripCards(trips) {
     var container = document.getElementById('tripContainer');
     container.innerHTML = ''; // Clear existing content
 
-    for (var i = 0; i < currentTrips && i < trips.length; i++) {
-        var trip = trips[i];
-var cardHtml = `
-    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-        <div class="package-item">
-            <div class="overflow-hidden">
-                <img class="img-fluid" src="${trip.image}" alt="${trip.name}">
-            </div>
-            <div class="d-flex border-bottom">
-                <small class="flex-fill text-center border-end py-2">
-                    <i class="fa fa-map-marker-alt text-primary me-2"></i>${trip.location}
-                </small>
-                <small class="flex-fill text-center border-end py-2">
-                    <i class="fa fa-calendar-alt text-primary me-2"></i>${trip.duration} days
-                </small>
-                <small class="flex-fill text-center py-2">
-                    <i class="fa fa-user text-primary me-2"></i>${trip.persons} Person
-                </small>
-            </div>
-            <div class="text-center p-4">
-                <h3 class="mb-0">$${trip.price.toFixed(2)}</h3>
-                <p>${trip.description}</p>
-                <div class="d-flex justify-content-center mb-2">
-                    <a href="#" class="btn btn-sm btn-primary px-3 border-end">Check Weater</a>
-                    <a href="#" class="btn btn-sm btn-primary px-3">Book Now</a>
-                </div>
-            </div>
+    trips.forEach(function(trip, index) {
+        if (index < currentTrips) {
+            // Column div
+            var colDiv = document.createElement('div');
+            colDiv.className = 'col-lg-4 col-md-6 wow fadeInUp';
+            colDiv.setAttribute('data-wow-delay', '0.1s');
+
+            // Package item div
+            var packageDiv = document.createElement('div');
+            packageDiv.className = 'package-item';
+
+            // Image container
+            var imgContainer = document.createElement('div');
+            imgContainer.className = 'overflow-hidden';
+            var img = document.createElement('img');
+            img.className = 'img-fluid';
+            img.src = trip.image;
+            img.alt = trip.name;
+            imgContainer.appendChild(img);
+
+            // Info container
+            var infoDiv = document.createElement('div');
+            infoDiv.className = 'd-flex border-bottom';
+
+            var locationSpan = document.createElement('small');
+            locationSpan.className = 'flex-fill text-center border-end py-2';
+            locationSpan.innerHTML = `<i class="fa fa-map-marker-alt text-primary me-2"></i>${trip.location}`;
+
+            var durationSpan = document.createElement('small');
+            durationSpan.className = 'flex-fill text-center border-end py-2';
+            durationSpan.innerHTML = `<i class="fa fa-calendar-alt text-primary me-2"></i>${trip.duration} days`;
+
+            var personsSpan = document.createElement('small');
+            personsSpan.className = 'flex-fill text-center py-2';
+            personsSpan.innerHTML = `<i class="fa fa-user text-primary me-2"></i>${trip.persons} Person`;
+
+            infoDiv.appendChild(locationSpan);
+            infoDiv.appendChild(durationSpan);
+            infoDiv.appendChild(personsSpan);
+
+            // Description and button container
+            var descDiv = document.createElement('div');
+            descDiv.className = 'text-center p-4';
+
+            var priceH3 = document.createElement('h3');
+            priceH3.className = 'mb-0';
+            priceH3.textContent = `$${trip.price.toFixed(2)}`;
+            var descP = document.createElement('p');
+            descP.textContent = trip.description;
+
+            var buttonContainer = document.createElement('div');
+            buttonContainer.className = 'd-flex justify-content-center mb-2';
+
+            var weatherButton = document.createElement('button');
+            weatherButton.className = 'btn btn-sm btn-primary px-3 border-end';
+            weatherButton.textContent = 'Check Weather';
+            weatherButton.onclick = function() {
+                checkWeather(trip.location, index);
+            };
+
+            var bookButton = document.createElement('a');
+            bookButton.href = '#';
+            bookButton.className = 'btn btn-sm btn-primary px-3';
+            bookButton.textContent = 'Book Now';
+
+            buttonContainer.appendChild(weatherButton);
+            buttonContainer.appendChild(bookButton);
+
+            // Append all parts to the package item
+            packageDiv.appendChild(imgContainer);
+            packageDiv.appendChild(infoDiv);
+            descDiv.appendChild(priceH3);
+            descDiv.appendChild(descP);
+            descDiv.appendChild(buttonContainer);
+            packageDiv.appendChild(descDiv);
+
+            // Append the package item to the column div
+            colDiv.appendChild(packageDiv);
+
+            // Append the column div to the container
+            container.appendChild(colDiv);
+        }
+    });
+
+    updateShowMoreButton(trips); // Update the Show More button visibility
+}
+function fetchWeather(location) {
+    const apiKey = 'f3b6adf594ee290c55aca1c5f80eceb6'; // Replace with your OpenWeatherMap API Key
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${apiKey}&units=metric`;
+
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            if (data.cod && data.cod !== 200) {
+                showToast(`Error: ${data.message}`);
+            } else {
+                displayWeather(data); // Function to display weather data in your modal
+            }
+        })
+        .catch(error => {
+             showToast(`Error: ${error.message}`); // Function to display error in toast
+            console.error('Error:', error.message)
+
+        })
+}
+
+function displayWeather(data) {
+    // Assuming you have a modal element to show the weather
+    const weatherModal = document.getElementById('weatherModalContent'); // Ensure you have a div with this id in your modal for content
+    const weatherContent = `
+        <div class="weather-modal-header">
+            <h5 class="weather-modal-title">Weather in ${data.name}</h5>
         </div>
-    </div>
-`;
-        container.innerHTML += cardHtml;
-    }
-     updateShowMoreButton(trips); // Update the Show More button visibility
+        <div class="weather-modal-body">
+            <p><strong>Temperature:</strong> ${data.main.temp} °C</p>
+            <p><strong>Weather:</strong> ${data.weather[0].main}</p>
+            <p><strong>Humidity:</strong> ${data.main.humidity}%</p>
+        </div>
+    `;
+
+    weatherModal.innerHTML = weatherContent;
+    $('#weatherModal').modal('show');
     }
     
+function showToast(message) {
+    const weatherToast = new bootstrap.Toast(document.getElementById('weatherToast'));
+    document.querySelector('#weatherToast .toast-body').textContent = message;
+    weatherToast.show();
+}
+
+    function checkWeather(location, index) {
+    // Here you would fetch the weather data based on the location
+    // For demo purposes, I'm just showing a static message
+   fetchWeather(location); 
+    // Show the modal (assuming you are using Bootstrap's modal)
+    // $('#weatherModal').modal('show');
+}
     function showMoreTrips() {
     currentTrips += tripsToShowEachTime;
     createTripCards(dummyTrips); // Assuming dummyTrips is your data array
@@ -293,12 +434,12 @@ function updateShowMoreButton(trips) {
     },
     {
         name: "Adventure Awaits",
-        location: "Kaghan",
+        location: "Kashmir",
         duration: 4,
         persons: 2,
         price: 139.00,
         image: "img/package-2.jpg",
-        description: "Explore the diverse landscapes of Kaghan, from volcanic mountains to lush rainforests."
+        description: "Explore the diverse landscapes of Kashmir, from volcanic mountains to lush rainforests."
     },
     {
         name: "City Lights",

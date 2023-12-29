@@ -60,6 +60,7 @@
                 <div class="navbar-nav ms-auto py-0">
                     <a href="index.html" class="nav-item nav-link active">Home</a>
                     <a href="#about" class="nav-item nav-link">About</a>
+                    <a href="#trips" class="nav-item nav-link">Trips</a>
                     <a href="#services" class="nav-item nav-link">Services</a>
                     <a href="#contact" class="nav-item nav-link">Contact</a>
                 </div>
@@ -143,106 +144,6 @@
     <!-- About End -->
 
 
-    <!-- Service Start -->
-    <div class="container-xxl py-5" id="services">
-        <div class="container">
-            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h6 class="section-title bg-white text-center text-primary px-3">Services</h6>
-                <h1 class="mb-5">Our Services</h1>
-            </div>
-            <div class="row g-4">
-                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="service-item rounded pt-3">
-                        <div class="p-4">
-                            <i class="fa fa-3x fa-flag text-primary mb-4"></i>
-                            <h5>Country Tours</h5>
-                            <p>Discover the charm and diversity of different culture.
-                                Experience the local culture, history,
-                                and beauty unique to each nation.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="service-item rounded pt-3">
-                        <div class="p-4">
-                            <i class="fa fa-3x fa-hotel text-primary mb-4"></i>
-                            <h5>Luxurious Hotels</h5>
-                            <p>From boutique hotels to exotic resorts, we offer stays that blend
-                                comfort, convenience, ensuring a restful experience.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="service-item rounded pt-3">
-                        <div class="p-4">
-                            <i class="fa fa-3x fa-user text-primary mb-4"></i>
-                            <h5>Travel Guides</h5>
-                            <p>Our knowledgeable travel guides provide insightful tours, unveiling hidden gems and
-                                cultural treasures in each
-                                destination.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
-                    <div class="service-item rounded pt-3">
-                        <div class="p-4">
-                            <i class="fa fa-3x  fa-medkit text-primary mb-4"></i>
-                            <h5>First Aid</h5>
-                            <p>Your safety is paramount. Our first aid services ensure a secure and worry-free journey,
-                                with expert care available
-                                round-the-clock.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="service-item rounded pt-3">
-                        <div class="p-4">
-                            <i class="fa fa-3x fa-utensils text-primary mb-4"></i>
-                            <h5>Hygenic Meal</h5>
-                            <p>Indulge in culinary excellence with our hygienic meals. We cater to diverse tastes,
-                                ensuring delicious and safe dining
-                                experiences.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="service-item rounded pt-3">
-                        <div class="p-4">
-                            <i class="fa fa-3x fa-camera text-primary mb-4"></i>
-                            <h5> Photography</h5>
-                            <p>Our professional photography captures the essence of your travels, creating lasting
-                                memories with each snapshot.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="service-item rounded pt-3">
-                        <div class="p-4">
-                            <i class="fa fa-3x fa-car text-primary mb-4"></i>
-                            <h5>Convenient Transport</h5>
-                            <p>Travel in comfort with our convenient transport services, designed to make your journeys
-                                smooth and enjoyable.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
-                    <div class="service-item rounded pt-3">
-                        <div class="p-4">
-                            <i class="fa fa-3x fa-music text-primary mb-4"></i>
-                            <h5>Live Music</h5>
-                            <p>Immerse in local culture with our live music and entertainment, enhancing your travel
-                                experience with vibrant
-                                performances.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Service End -->
-
-
     <!-- Destination Start -->
     <div class="container-xxl py-5 destination" id="destination">
         <div class="container">
@@ -301,20 +202,32 @@
     <!-- Destination Start -->
 
     <!-- Modal for weather update start -->
-    <div class="modal fade" id="weatherModal" tabindex="-1" aria-labelledby="weatherModalLabel" aria-hidden="true">
+
+    <div class="modal" id="weatherModal" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="weatherModalLabel">Weather Information</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body" id="weatherModalContent">
-                    <!-- Weather data will be shown here -->
+                <div id="weatherModalContent">
+                    <!-- Weather content will be loaded here -->
                 </div>
             </div>
         </div>
     </div>
+
     <!-- Modal for weather update End -->
+    <!-- Error toast -->
+    <div class="position-fixed  p-3" style="top: 70px; right: 10px; z-index: 1050;">
+        <div id="weatherToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <strong class="me-auto">Weather Error</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                <!-- Error message will go here -->
+            </div>
+        </div>
+    </div>
+    <!-- Error toast -->
+
 
 
     <!-- My dynamic Trips Start -->
@@ -457,6 +370,105 @@
     </div> -->
     <!-- Process Start -->
 
+
+    <!-- Service Start -->
+    <div class="container-xxl py-5" id="services">
+        <div class="container">
+            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                <h6 class="section-title bg-white text-center text-primary px-3">Services</h6>
+                <h1 class="mb-5">Our Services</h1>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="service-item rounded pt-3">
+                        <div class="p-4">
+                            <i class="fa fa-3x fa-flag text-primary mb-4"></i>
+                            <h5>Country Tours</h5>
+                            <p>Discover the charm and diversity of different culture.
+                                Experience the local culture, history,
+                                and beauty unique to each nation.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="service-item rounded pt-3">
+                        <div class="p-4">
+                            <i class="fa fa-3x fa-hotel text-primary mb-4"></i>
+                            <h5>Luxurious Hotels</h5>
+                            <p>From boutique hotels to exotic resorts, we offer stays that blend
+                                comfort, convenience, ensuring a restful experience.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="service-item rounded pt-3">
+                        <div class="p-4">
+                            <i class="fa fa-3x fa-user text-primary mb-4"></i>
+                            <h5>Travel Guides</h5>
+                            <p>Our knowledgeable travel guides provide insightful tours, unveiling hidden gems and
+                                cultural treasures in each
+                                destination.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
+                    <div class="service-item rounded pt-3">
+                        <div class="p-4">
+                            <i class="fa fa-3x  fa-medkit text-primary mb-4"></i>
+                            <h5>First Aid</h5>
+                            <p>Your safety is paramount. Our first aid services ensure a secure and worry-free journey,
+                                with expert care available
+                                round-the-clock.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="service-item rounded pt-3">
+                        <div class="p-4">
+                            <i class="fa fa-3x fa-utensils text-primary mb-4"></i>
+                            <h5>Hygenic Meal</h5>
+                            <p>Indulge in culinary excellence with our hygienic meals. We cater to diverse tastes,
+                                ensuring delicious and safe dining
+                                experiences.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="service-item rounded pt-3">
+                        <div class="p-4">
+                            <i class="fa fa-3x fa-camera text-primary mb-4"></i>
+                            <h5> Photography</h5>
+                            <p>Our professional photography captures the essence of your travels, creating lasting
+                                memories with each snapshot.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="service-item rounded pt-3">
+                        <div class="p-4">
+                            <i class="fa fa-3x fa-car text-primary mb-4"></i>
+                            <h5>Convenient Transport</h5>
+                            <p>Travel in comfort with our convenient transport services, designed to make your journeys
+                                smooth and enjoyable.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
+                    <div class="service-item rounded pt-3">
+                        <div class="p-4">
+                            <i class="fa fa-3x fa-music text-primary mb-4"></i>
+                            <h5>Live Music</h5>
+                            <p>Immerse in local culture with our live music and entertainment, enhancing your travel
+                                experience with vibrant
+                                performances.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Service End -->
 
     <!-- Team Start -->
     <div class="container-xxl py-5" id="team">
@@ -738,7 +750,7 @@
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <h4 class="text-white mb-3">Contact</h4>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>36 Street 7, Ghouri Town, Islamabad</p>
                     <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+92 317 1723198</p>
                     <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@twithus.com</p>
                 </div>

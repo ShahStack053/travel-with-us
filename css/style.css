@@ -442,3 +442,27 @@
   padding-right: 0;
   border-right: none;
 }
+
+.weather-modal-header {
+  padding: 15px;
+  background-color: #007bff;
+  color: white;
+  border-top-left-radius: 0.3rem;
+  border-top-right-radius: 0.3rem;
+}
+
+.weather-modal-title {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.weather-modal-body {
+  padding: 15px;
+  line-height: 1.6;
+  background-color: #f8f9fa;
+}
+
+.weather-modal-body p {
+  margin: 0 0 10px;
+  font-size: 1.1rem;
+}
