@@ -349,7 +349,7 @@ const tripsToShowEachTime = 3;
     updateShowMoreButton(trips); // Update the Show More button visibility
 }
 function fetchWeather(location) {
-    const apiKey = 'f3b6adf594ee290c55aca1c5f80eceb6'; // Replace with your OpenWeatherMap API Key
+    const apiKey = '8026683f4a92594cb95b44eba6b80af4'; // Replace with your OpenWeatherMap API Key
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${apiKey}&units=metric`;
 
     fetch(url)
