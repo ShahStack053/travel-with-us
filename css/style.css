@@ -548,7 +548,22 @@
   background-color: #86b817;
   border: 1px solid #dcdfd5;
 }
+.trip-card-image {
+  width: 360px;
+  height: 220px;
+}
+/* .testemonial-main {
+  background: linear-gradient(rgba(15, 23, 43, 0.5), rgba(15, 23, 43, 0.5)),
+    url(../img/booking-bg.jpg);
 
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+} */
+
+.testemonial-text {
+  text-align: justify;
+}
 @media screen and (max-width: 525px) {
   .form-card {
     width: 50% !important;

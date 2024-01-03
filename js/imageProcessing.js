@@ -41,42 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Add more JS code here to handle the form submission and send the cropped image to the server
 });
-// Example of getting the cropped image from the cropper instance
-// document.getElementById('yourFormId').addEventListener('submit', function(event) {
-//     event.preventDefault();
 
-//     // Get the canvas with the final cropped result
-//     let croppedCanvas = cropper.getCroppedCanvas({
-//         width: 600,
-//         height: 400,
-//     });
-
-//     // Convert the canvas to a Blob
-//     croppedCanvas.toBlob(function(blob) {
-//         // Create a FormData object and append the blob file
-//         let formData = new FormData();
-//         formData.append('croppedImage', blob);
-
-//         // Post the FormData object with the file to the server
-//         // Replace 'yourServerEndpoint' with your actual upload URL
-//         fetch('yourServerEndpoint', {
-//             method: 'POST',
-//             body: formData,
-//         })
-//         .then(response => response.json())
-//         .then(data => {
-//             console.log(data);
-//             // Handle the server response here
-//         })
-//         .catch(error => {
-//             console.error('Error:', error);
-//         });
-//     });
-
-//     // Alternatively, to get the Base64 image data
-//     let croppedImageDataURL = croppedCanvas.toDataURL();
-//     // You can now send 'croppedImageDataURL' to your server
-// });
 document.getElementById('addTripForm').addEventListener('submit', function (event) {
   event.preventDefault();
 
