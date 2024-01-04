@@ -560,6 +560,17 @@
   background-repeat: no-repeat;
   background-size: cover;
 } */
+.whatsapp-chat {
+  position: fixed;
+  bottom: 20px; /* Adjust as needed */
+  right: 20px; /* Adjust as needed */
+  z-index: 1000;
+}
+
+.whatsapp-chat i {
+  font-size: 44px;
+  color: white; /* Change color as needed */
+}
 
 .testemonial-text {
   text-align: justify;

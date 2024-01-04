@@ -114,13 +114,13 @@
     },
     {
       name: "Adventure Awaits",
-      location: "Kashmir",
+      location: "Swat",
       duration: 4,
       persons: 2,
       price: 139.0,
       image: "../img/package-2.jpg",
       description:
-        "Explore the diverse landscapes of Kashmir, from volcanic mountains to lush rainforests .",
+        "Explore the diverse landscapes of Swat, from volcanic mountains to lush rainforests .",
     },
     {
       name: "City Lights",
@@ -144,13 +144,13 @@
     },
     {
       name: "Adventure Awaits",
-      location: "Kashmir",
+      location: "Lahore",
       duration: 4,
       persons: 2,
       price: 139.0,
       image: "../img/package-2.jpg",
       description:
-        "Explore the diverse landscapes of Kashmir, from volcanic mountains to lush rainforests.",
+        "Explore the diverse landscapes of Lahore, from volcanic mountains to lush rainforests.",
     },
     {
       name: "City Lights",
@@ -327,7 +327,7 @@
         };
 
         var bookButton = document.createElement("a");
-        bookButton.href = "#";
+        bookButton.href = "#booking";
         bookButton.className = "btn btn-sm btn-primary px-3";
         bookButton.textContent = "Book Now";
 
@@ -529,13 +529,13 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       {
         name: "Adventure Awaits",
-        location: "Kashmir",
+        location: "Swat",
         duration: 4,
         persons: 2,
         price: 139.0,
         image: "../img/package-2.jpg",
         description:
-          "Explore the diverse landscapes of Kashmir, from volcanic mountains to lush rainforests.",
+          "Explore the diverse landscapes of Swat, from volcanic mountains to lush rainforests.",
       },
       {
         name: "City Lights",
