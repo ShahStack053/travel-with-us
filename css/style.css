@@ -494,7 +494,8 @@
 
 .form-card {
   display: flex;
-  /* align-items: center; */
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
   /* background-color: rgb(234 244 245); */
 
@@ -506,7 +507,20 @@
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+#signupformcard {
+  height: auto;
+}
+.form-span {
+  display: flex;
+  color: #dddddd;
+  margin-top: 10px;
+}
 
+.login-anchor {
+  margin-left: 5px;
+  font-weight: 600;
+  color: #76b92a;
+}
 .login-form {
   display: flex;
   flex-direction: column;
@@ -579,9 +593,15 @@
   .form-card {
     width: 50% !important;
   }
+  #signupformcard {
+    width: 50% !important;
+  }
 }
 @media screen and (width: 768px) {
   .form-card {
+    width: 30% !important;
+  }
+  #signupformcard {
     width: 30% !important;
   }
 }

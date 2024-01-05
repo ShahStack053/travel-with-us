@@ -327,7 +327,15 @@
         };
 
         var bookButton = document.createElement("a");
-        bookButton.href = "#booking";
+        var isLoggedIn = localStorage.getItem("isLoggedIn");
+
+        if (isLoggedIn === "true") {
+          // If logged in, navigate to the booking section
+          bookButton.href = "#booking";
+        } else {
+          // If not logged in, navigate to the login page
+          bookButton.href = "/login.html"; // Update this with the actual path to your login page
+        }
         bookButton.className = "btn btn-sm btn-primary px-3";
         bookButton.textContent = "Book Now";
 
@@ -420,93 +428,107 @@
   }
 
   // Example array of testimonials
-const testimonials = [
-  {
-    name: "Asif",
-    location: "Islamabad, Pakistan",
-    image: "../img/testimonial-1.jpg",
-    text: "My journey with 'Travel With Us' was nothing short of fabulous. From the bustling markets of Bangkok to the serene beaches of Phuket, every moment "
-  },
-  {
-    name: "Mujtaba",
-    location: "Rawalpindi, Pakistan",
-    image: "../img/testimonial-2.jpg",
-    text: "The attention to detail and the level of care provided throughout our tour of the Italian countryside was incredible. 'Travel With Us' truly made this a trip of a lifetime!"
-  },
-  {
-    name: "Awais",
-    location: "karachi, Pakistan",
-    image: "../img/testimonial-3.jpg",
-    text: "I never knew a trip could be this stress-free. 'Travel With Us' took care of every single detail, allowing me to immerse myself in the culture and beauty of Japan."
-  },
-  {
-    name: "Ashaan ",
-    location: "lahore, Pakistan",
-    image: "../img/testimonial-4.jpg",
-    text: "Exploring the ancient ruins of Machu Picchu with expert guides was an enlightening experience. The service was impeccable, and every accommodation "
-  }
-];
-// Function to render testimonials dynamically on the page
-function renderTestimonials(testimonialsArray) {
-  const testimonialContainer = document.querySelector('.testimonial-carousel');
-  testimonialContainer.innerHTML = ''; // Clear existing testimonials
+  const testimonials = [
+    {
+      name: "Asif",
+      location: "Islamabad, Pakistan",
+      image: "../img/testimonial-1.jpg",
+      text: "My journey with 'Travel With Us' was nothing short of fabulous. From the bustling markets of Bangkok to the serene beaches of Phuket, every moment ",
+    },
+    {
+      name: "Mujtaba",
+      location: "Rawalpindi, Pakistan",
+      image: "../img/testimonial-2.jpg",
+      text: "The attention to detail and the level of care provided throughout our tour of the Italian countryside was incredible. 'Travel With Us' truly made this a trip of a lifetime!",
+    },
+    {
+      name: "Awais",
+      location: "karachi, Pakistan",
+      image: "../img/testimonial-3.jpg",
+      text: "I never knew a trip could be this stress-free. 'Travel With Us' took care of every single detail, allowing me to immerse myself in the culture and beauty of Japan.",
+    },
+    {
+      name: "Ashaan ",
+      location: "lahore, Pakistan",
+      image: "../img/testimonial-4.jpg",
+      text: "Exploring the ancient ruins of Machu Picchu with expert guides was an enlightening experience. The service was impeccable, and every accommodation ",
+    },
+  ];
+  // Function to render testimonials dynamically on the page
+  function renderTestimonials(testimonialsArray) {
+    const testimonialContainer = document.querySelector(
+      ".testimonial-carousel"
+    );
+    testimonialContainer.innerHTML = ""; // Clear existing testimonials
 
-  testimonialsArray.forEach(testimonial => {
-    const testimonialElement = document.createElement('div');
-    testimonialElement.className = 'testimonial-item bg-white text-center border p-4';
-    testimonialElement.innerHTML = `
+    testimonialsArray.forEach((testimonial) => {
+      const testimonialElement = document.createElement("div");
+      testimonialElement.className =
+        "testimonial-item bg-white text-center border p-4";
+      testimonialElement.innerHTML = `
       <img class="bg-white rounded-circle shadow p-1 mx-auto mb-3" src="${testimonial.image}" alt="Testimonial from ${testimonial.name}" style="width: 80px; height: 80px;">
       <h5 class="mb-0">${testimonial.name}</h5>
       <p class="text-muted">${testimonial.location}</p>
       <p class="mb-0 testemonial-text">${testimonial.text}</p>
     `;
-    testimonialContainer.appendChild(testimonialElement);
-  });
+      testimonialContainer.appendChild(testimonialElement);
+    });
 
-  // Now that dynamic content has been added, initialize the carousel
-  initializeCarousel();
-}
-
-// Call the function when the document is ready
-document.addEventListener('DOMContentLoaded', () => renderTestimonials(testimonials));
-
-function initializeCarousel() {
-  // Check if the carousel was already initialized and destroy it
-  if ($(".testimonial-carousel").data('owl.carousel')) {
-    $(".testimonial-carousel").data('owl.carousel').destroy();
+    // Now that dynamic content has been added, initialize the carousel
+    initializeCarousel();
   }
 
-  // Reinitialize the carousel
-  $(".testimonial-carousel").owlCarousel({
-    center: true,
-    loop: true,
-    margin: 24,
-    autoplay: true,
-    autoplayTimeout: 3000, // Set the timeout to 3 seconds
-    autoplayHoverPause: true, // Pause on hover
-    responsive:{
-      600:{
-        items:3
-      }
+  // Call the function when the document is ready
+  document.addEventListener("DOMContentLoaded", () =>
+    renderTestimonials(testimonials)
+  );
+
+  function initializeCarousel() {
+    // Check if the carousel was already initialized and destroy it
+    if ($(".testimonial-carousel").data("owl.carousel")) {
+      $(".testimonial-carousel").data("owl.carousel").destroy();
     }
+
+    // Reinitialize the carousel
+    $(".testimonial-carousel").owlCarousel({
+      center: true,
+      loop: true,
+      margin: 24,
+      autoplay: true,
+      autoplayTimeout: 3000, // Set the timeout to 3 seconds
+      autoplayHoverPause: true, // Pause on hover
+      responsive: {
+        600: {
+          items: 3,
+        },
+      },
+    });
+
+    // Update the active class after initialization and on change
+    updateActiveClass();
+    $(".testimonial-carousel").on("changed.owl.carousel", updateActiveClass);
+  }
+
+  function updateActiveClass() {
+    // You might need to adjust the selector based on the version of Owl Carousel
+    $(".owl-item.active").siblings().removeClass("active");
+    $(".owl-item.active").eq(1).addClass("active"); // Since the center item is the second active item in the array
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    renderTestimonials(testimonials);
   });
+  document.addEventListener("DOMContentLoaded", function () {
+    var logoutButton = document.getElementById("logoutButton");
 
-  // Update the active class after initialization and on change
-  updateActiveClass();
-  $('.testimonial-carousel').on('changed.owl.carousel', updateActiveClass);
-}
+    logoutButton.addEventListener("click", function() {
+        // Remove the token from local storage
+        localStorage.removeItem("isLoggedIn");
 
-function updateActiveClass() {
-  // You might need to adjust the selector based on the version of Owl Carousel
-  $('.owl-item.active').siblings().removeClass('active');
-  $('.owl-item.active').eq(1).addClass('active'); // Since the center item is the second active item in the array
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  renderTestimonials(testimonials);
+        // Redirect the user to index.html
+        window.location.href = '../index.html';
+    });
 });
-
-
 
 
   function fetchTrips() {
