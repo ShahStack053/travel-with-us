@@ -142,56 +142,6 @@
       description:
         "Experience the serene beauty of Murree's beaches and rich cultural heritage. Perfect for a quick getaway.",
     },
-    {
-      name: "Adventure Awaits",
-      location: "Lahore",
-      duration: 4,
-      persons: 2,
-      price: 139.0,
-      image: "../img/package-2.jpg",
-      description:
-        "Explore the diverse landscapes of Lahore, from volcanic mountains to lush rainforests.",
-    },
-    {
-      name: "City Lights",
-      location: "Gilgit",
-      duration: 5,
-      persons: 2,
-      price: 189.0,
-      image: "../img/package-3.jpg",
-      description:
-        "Discover the vibrant city life of Gilgit and its stunning skyline was a very delight experience.",
-    },
-    {
-      name: "Tropical Paradise",
-      location: "Murree",
-      duration: 3,
-      persons: 2,
-      price: 149.0,
-      image: "../img/package-1.jpg",
-      description:
-        "Experience the serene beauty of Murree's beaches and rich cultural heritage. Perfect for a quick getaway.",
-    },
-    {
-      name: "Adventure Awaits",
-      location: "Kashmir",
-      duration: 4,
-      persons: 2,
-      price: 139.0,
-      image: "../img/package-2.jpg",
-      description:
-        "Explore the diverse landscapes of Kashmir, from volcanic mountains to lush rainforests.",
-    },
-    {
-      name: "City Lights",
-      location: "Gilgit",
-      duration: 5,
-      persons: 2,
-      price: 189.0,
-      image: "../img/package-3.jpg",
-      description:
-        "Discover the vibrant city life of Gilgit and its stunning skyline was a very delight experience.",
-    },
   ];
   //     function createTripCards(trips) {
   //     var tripContainer = $('#trips .row');
@@ -521,15 +471,13 @@
   document.addEventListener("DOMContentLoaded", function () {
     var logoutButton = document.getElementById("logoutButton");
 
-    logoutButton.addEventListener("click", function() {
-        // Remove the token from local storage
-        localStorage.removeItem("isLoggedIn");
-
-        // Redirect the user to index.html
-        window.location.href = '../index.html';
+    logoutButton.addEventListener("click", function () {
+      // Remove the token from local storage
+      localStorage.clear();
+      // Redirect the user to index.html
+      window.location.href = "../index.html";
     });
-});
-
+  });
 
   function fetchTrips() {
     // fetch('URL_OF_YOUR_API') // Replace with your API URL
