@@ -112,36 +112,6 @@
       description:
         "Experience the serene beauty of Murree's beaches and rich cultural heritage. Perfect for a quick getaway.",
     },
-    {
-      name: "Adventure Awaits",
-      location: "Swat",
-      duration: 4,
-      persons: 2,
-      price: 139.0,
-      image: "../img/package-2.jpg",
-      description:
-        "Explore the diverse landscapes of Swat, from volcanic mountains to lush rainforests .",
-    },
-    {
-      name: "City Lights",
-      location: "Gilgit",
-      duration: 5,
-      persons: 2,
-      price: 189.0,
-      image: "../img/package-3.jpg",
-      description:
-        "Discover the vibrant city life of Gilgit and its stunning skyline was a very delight experience.",
-    },
-    {
-      name: "Tropical Paradise",
-      location: "Murree",
-      duration: 3,
-      persons: 2,
-      price: 149.0,
-      image: "../img/package-1.jpg",
-      description:
-        "Experience the serene beauty of Murree's beaches and rich cultural heritage. Perfect for a quick getaway.",
-    },
   ];
   //     function createTripCards(trips) {
   //     var tripContainer = $('#trips .row');
@@ -384,25 +354,7 @@
       location: "Islamabad, Pakistan",
       image: "../img/testimonial-1.jpg",
       text: "My journey with 'Travel With Us' was nothing short of fabulous. From the bustling markets of Bangkok to the serene beaches of Phuket, every moment ",
-    },
-    {
-      name: "Mujtaba",
-      location: "Rawalpindi, Pakistan",
-      image: "../img/testimonial-2.jpg",
-      text: "The attention to detail and the level of care provided throughout our tour of the Italian countryside was incredible. 'Travel With Us' truly made this a trip of a lifetime!",
-    },
-    {
-      name: "Awais",
-      location: "karachi, Pakistan",
-      image: "../img/testimonial-3.jpg",
-      text: "I never knew a trip could be this stress-free. 'Travel With Us' took care of every single detail, allowing me to immerse myself in the culture and beauty of Japan.",
-    },
-    {
-      name: "Ashaan ",
-      location: "lahore, Pakistan",
-      image: "../img/testimonial-4.jpg",
-      text: "Exploring the ancient ruins of Machu Picchu with expert guides was an enlightening experience. The service was impeccable, and every accommodation ",
-    },
+    }
   ];
   // Function to render testimonials dynamically on the page
   function renderTestimonials(testimonialsArray) {
@@ -496,27 +448,7 @@
         image: "../img/package-1.jpg",
         description:
           "Experience the serene beauty of Murree's beaches and rich cultural heritage. Perfect for a quick getaway.",
-      },
-      {
-        name: "Adventure Awaits",
-        location: "Swat",
-        duration: 4,
-        persons: 2,
-        price: 139.0,
-        image: "../img/package-2.jpg",
-        description:
-          "Explore the diverse landscapes of Swat, from volcanic mountains to lush rainforests.",
-      },
-      {
-        name: "City Lights",
-        location: "Gilgit",
-        duration: 5,
-        persons: 2,
-        price: 189.0,
-        image: "../img/package-3.jpg",
-        description:
-          "Discover the vibrant city life of Gilgit and its stunning skyline was a very delight experience.",
-      },
+      }
     ];
 
     // Function to create trip cards can then use this dummy data
@@ -532,12 +464,12 @@
     const searchQuery = document.getElementById("searchInput").value;
     filterTrips(searchQuery);
   });
-  // $(document).ready(function() {
-  //     // Existing code ...
+  $(document).ready(function() {
+      // Existing code ...
 
-  //     // Fetch and display trips
-  //     fetchTrips();
-  // });
+      // Fetch and display trips
+      fetchTrips();
+  });
   document
     .getElementById("showMoreBtn")
     .addEventListener("click", showMoreTrips);

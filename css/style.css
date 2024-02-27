@@ -175,7 +175,7 @@
   background-size: cover;
 }
 
-.breadcrumb-item + .breadcrumb-item::before {
+.breadcrumb-item+.breadcrumb-item::before {
   color: rgba(255, 255, 255, 0.5);
 }
 
@@ -303,11 +303,9 @@
   left: 0;
   height: 100%;
   width: 0;
-  background: linear-gradient(
-    to right,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(255, 255, 255, 0) 100%
-  );
+  background: linear-gradient(to right,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 0) 100%);
   z-index: 1;
 }
 
@@ -318,15 +316,14 @@
   right: 0;
   height: 100%;
   width: 0;
-  background: linear-gradient(
-    to left,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(255, 255, 255, 0) 100%
-  );
+  background: linear-gradient(to left,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 0) 100%);
   z-index: 1;
 }
 
 @media (min-width: 768px) {
+
   .testimonial-carousel::before,
   .testimonial-carousel::after {
     width: 200px;
@@ -334,6 +331,7 @@
 }
 
 @media (min-width: 992px) {
+
   .testimonial-carousel::before,
   .testimonial-carousel::after {
     width: 300px;
@@ -471,8 +469,10 @@
   font-family: Arial, sans-serif;
   background: linear-gradient(rgba(15, 23, 43, 0.5), rgba(15, 23, 43, 0.5)),
     url(../img/booking-bg.jpg);
-  background-size: cover; /* Cover the entire size of the element */
-  background-repeat: no-repeat; /* Prevent the image from repeating */
+  background-size: cover;
+  /* Cover the entire size of the element */
+  background-repeat: no-repeat;
+  /* Prevent the image from repeating */
   background-position: center;
   margin: 0;
   padding: 0;
@@ -507,9 +507,11 @@
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
 #signupformcard {
   height: auto;
 }
+
 .form-span {
   display: flex;
   color: #dddddd;
@@ -521,11 +523,13 @@
   font-weight: 600;
   color: #76b92a;
 }
+
 .login-form {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
 .login-title {
   color: #dcdfd5;
 }
@@ -533,6 +537,19 @@
 .input-group {
   margin-bottom: 15px;
 }
+
+.delete-booking-btn {
+  color: white !important;
+  background-color: red !important;
+  border: none;
+}
+
+.delete-trip-btn {
+  color: white !important;
+  background-color: red !important;
+  border: none;
+}
+
 
 .input-group label {
   display: block;
@@ -562,10 +579,12 @@
   background-color: #86b817;
   border: 1px solid #dcdfd5;
 }
+
 .trip-card-image {
   width: 360px;
   height: 220px;
 }
+
 /* .testemonial-main {
   background: linear-gradient(rgba(15, 23, 43, 0.5), rgba(15, 23, 43, 0.5)),
     url(../img/booking-bg.jpg);
@@ -576,31 +595,38 @@
 } */
 .whatsapp-chat {
   position: fixed;
-  bottom: 20px; /* Adjust as needed */
-  right: 20px; /* Adjust as needed */
+  bottom: 20px;
+  /* Adjust as needed */
+  right: 20px;
+  /* Adjust as needed */
   z-index: 1000;
 }
 
 .whatsapp-chat i {
   font-size: 44px;
-  color: white; /* Change color as needed */
+  color: white;
+  /* Change color as needed */
 }
 
 .testemonial-text {
   text-align: justify;
 }
+
 @media screen and (max-width: 525px) {
   .form-card {
     width: 50% !important;
   }
+
   #signupformcard {
     width: 50% !important;
   }
 }
+
 @media screen and (width: 768px) {
   .form-card {
     width: 30% !important;
   }
+
   #signupformcard {
     width: 30% !important;
   }

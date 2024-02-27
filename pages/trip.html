@@ -126,13 +126,13 @@
                                     <label for="tripDuration">Duration (Days)</label>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <!-- <div class="col-md-6">
                                 <div class="form-floating">
                                     <input type="number" class="form-control" id="tripPersons"
                                         placeholder="Number of Persons" required min="0" />
                                     <label for="tripPersons">Number of Persons</label>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="col-md-12">
                                 <div class="form-floating">
                                     <textarea class="form-control" placeholder="Trip Description" id="tripDescription"
@@ -158,6 +158,32 @@
     </div>
     <!-- Add Trip Section End -->
 
+    <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="container">
+            <div class="text-center mb-2 wow fadeInUp" data-wow-delay="0.1s">
+                <h6 class="section-title bg-white text-center text-primary px-3">
+                    Trips Details
+                </h6>
+                <h1 class="mb-3">All Trips</h1>
+            </div>
+            <div class="table-responsive wow fadeInUp" data-wow-delay="0.2s">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">No</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Location</th>
+                            <th scope="col">Duration (Days)</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
     <!-- Table Section Start -->
     <!-- <div class="container-xxl py-5">
@@ -203,72 +229,17 @@
                 <h1 class="mb-3">Our Guests</h1>
             </div>
             <div class="table-responsive wow fadeInUp" data-wow-delay="0.2s">
-                <table class="table">
+                <table class="table" id="bookingDetailsTable">
                     <thead>
                         <tr>
                             <th scope="col">No</th>
                             <th scope="col">Name</th>
                             <th scope="col">Email</th>
                             <th scope="col">Destination</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Table rows will be added here -->
-                        <tr>
-                            <td>1</td>
-                            <td>John Doe</td>
-                            <td>johndoe@example.com</td>
-                            <td>Paris</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>John Doe</td>
-                            <td>johndoe@example.com</td>
-                            <td>Paris</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>John Doe</td>
-                            <td>johndoe@example.com</td>
-                            <td>Paris</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>John Doe</td>
-                            <td>johndoe@example.com</td>
-                            <td>Paris</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>John Doe</td>
-                            <td>johndoe@example.com</td>
-                            <td>Paris</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>John Doe</td>
-                            <td>johndoe@example.com</td>
-                            <td>Paris</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>John Doe</td>
-                            <td>johndoe@example.com</td>
-                            <td>Paris</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>John Doe</td>
-                            <td>johndoe@example.com</td>
-                            <td>Paris</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>John Doe</td>
-                            <td>johndoe@example.com</td>
-                            <td>Paris</td>
-                        </tr>
-                        <!-- Add more rows as needed -->
                     </tbody>
                 </table>
             </div>
@@ -347,6 +318,188 @@
 
     <!-- Template Javascript -->
     <script src="../js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.querySelector('form');
+            form.addEventListener('submit', function (event) {
+                event.preventDefault(); // Prevent default form submission
+
+                // Create FormData object to compile the data
+                const formData = new FormData(form);
+                formData.append('name', document.getElementById('tripName').value);
+                formData.append('location', document.getElementById('tripLocation').value);
+                formData.append('price', document.getElementById('tripPrice').value);
+                formData.append('duration', document.getElementById('tripDuration').value);
+                // formData.append('person', document.getElementById('tripPersons').value);
+                formData.append('description', document.getElementById('tripDescription').value);
+                const tripImage = document.getElementById('tripImage').files[0];
+                if (tripImage) {
+                    formData.append('image', tripImage);
+                }
+                const authToken = localStorage.getItem('token');
+                // Send the data using fetch
+                fetch('http://localhost:80/api/trip', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${authToken}`
+                    },
+                    body: formData, // Send the FormData object
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        // Check if the response body is not empty
+                        if (response.headers.get("content-length") === "0" || !response.body) {
+                            return {}; // Return an empty object or handle as needed
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log('Success:', data);
+                        // window.location.reload();
+                        fetchAndDisplayTrips();
+                        form.reset();
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                        // Handle errors here (e.g., showing an error message)
+                    });
+            });
+        });
+
+
+        function fetchAndDisplayTrips() {
+            // Retrieve the authorization token from localStorage
+
+            fetch('http://localhost:80/api/trip', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                }
+            })
+                .then(response => response.json())
+                .then(responseData => {
+                    const trips = responseData.data; // Access the data property of the response
+                    const tableBody = document.querySelector('.table tbody');
+                    tableBody.innerHTML = ''; // Clear existing rows
+
+                    trips.forEach((trip, index) => {
+                        const row = tableBody.insertRow();
+
+                        const cellNo = row.insertCell(0);
+                        const cellName = row.insertCell(1);
+                        const cellLocation = row.insertCell(2);
+                        const cellDuration = row.insertCell(3);
+                        const cellPrice = row.insertCell(4);
+                        const deleteCell = row.insertCell(-1); // Adds a cell at the end
+                        deleteCell.innerHTML = `<button class="delete-trip-btn" data-id="${trip.id}">Delete</button>`;
+                        cellNo.innerHTML = index + 1;
+                        cellName.textContent = trip.name;
+                        cellLocation.textContent = trip.location;
+                        cellDuration.textContent = trip.duration;
+                        cellPrice.textContent = `${trip.price}/=Rs`;
+                    });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+
+        function fetchAndDisplayBooking() {
+            // Retrieve the authorization token from localStorage
+            const authToken = localStorage.getItem('token');
+
+            fetch('http://localhost:80/api/booking', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'Authorization': `Bearer ${authToken}`
+                }
+            })
+                .then(response => response.json())
+                .then(responseData => {
+                    const bookings = responseData
+                    const tableBody = document.querySelector('#bookingDetailsTable tbody');
+                    tableBody.innerHTML = ''; // Clear existing rows
+
+                    bookings.forEach((booking, index) => {
+                        const row = tableBody.insertRow();
+
+                        const cellNo = row.insertCell(0);
+                        const cellName = row.insertCell(1);
+                        const cellEmail = row.insertCell(2);
+                        const cellLocation = row.insertCell(3);
+
+                        cellNo.innerHTML = index + 1;
+                        cellName.textContent = booking.name;
+                        cellEmail.textContent = booking.email;
+                        cellLocation.textContent = booking.location;
+                        const deleteCell = row.insertCell(-1);
+                        deleteCell.innerHTML = `<button class="delete-booking-btn" data-id="${booking.id}">Delete</button>`; s
+                    });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+        document.addEventListener('click', function (e) {
+            if (e.target.matches('.delete-trip-btn')) {
+                const id = e.target.getAttribute('data-id');
+                deleteTrip(id);
+            } else if (e.target.matches('.delete-booking-btn')) {
+                const id = e.target.getAttribute('data-id');
+                deleteBooking(id);
+            }
+        });
+
+        function deleteTrip(id) {
+            // API call to delete trip
+            url = `http://localhost:80/api/trip/${id}`
+            console.log(`Deleting trip with id ${id}`);
+            fetch(url, {
+                method: 'DELETE',
+                headers: {
+                    'Authorization': `Bearer ${authToken}`
+                },
+            }).then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                fetchAndDisplayTrips();
+            }).catch(error => {
+                console.error('Deletion error:', error);
+            });
+        }
+        const authToken = localStorage.getItem('token');
+
+        function deleteBooking(id) {
+            // API call to delete booking
+            console.log(`Deleting booking with id ${id}`);
+            url = `http://localhost:80/api/booking/${id}`;
+            fetch(url, {
+                method: 'DELETE',
+                headers: {
+                    'Authorization': `Bearer ${authToken}`
+                },
+            }).then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                fetchAndDisplayBooking();
+            }).catch(error => {
+                console.error('Deletion error:', error);
+            });
+        }
+
+        fetchAndDisplayTrips();
+        fetchAndDisplayBooking();
+    </script>
+
 </body>
 
 </html>
