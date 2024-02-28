@@ -58,8 +58,10 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0">
-                    <a href="dashboard.html" class="nav-item nav-link">Back To Home</a>
-                    <a href="#addTrip" class="nav-item nav-link">Add Trip Form</a>
+                    <a href="dashboard.html" class="nav-item nav-link">Home</a>
+                    <a href="#addTrip" class="nav-item nav-link">Add Trip</a>
+                    <a href="#Trip" class="nav-item nav-link">Trip</a>
+                    <a href="#Booking" class="nav-item nav-link">Bookings</a>
                 </div>
                 <a id="logoutButton" class="btn btn-primary rounded-pill py-2 px-4">Logout</a>
             </div>
@@ -158,7 +160,7 @@
     </div>
     <!-- Add Trip Section End -->
 
-    <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s" id="Trip">
         <div class="container">
             <div class="text-center mb-2 wow fadeInUp" data-wow-delay="0.1s">
                 <h6 class="section-title bg-white text-center text-primary px-3">
@@ -220,7 +222,7 @@
     </div> -->
     <!-- Table Section End -->
     <!-- Table Section Start -->
-    <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s" id="Booking">
         <div class="container">
             <div class="text-center mb-2 wow fadeInUp" data-wow-delay="0.1s">
                 <h6 class="section-title bg-white text-center text-primary px-3">
@@ -439,7 +441,7 @@
                         cellEmail.textContent = booking.email;
                         cellLocation.textContent = booking.location;
                         const deleteCell = row.insertCell(-1);
-                        deleteCell.innerHTML = `<button class="delete-booking-btn" data-id="${booking.id}">Delete</button>`; s
+                        deleteCell.innerHTML = `<button class="delete-booking-btn" data-id="${booking.id}">Delete</button>`;
                     });
                 })
                 .catch(error => {

@@ -101,87 +101,7 @@
 
   var currentTrips = 0;
   const tripsToShowEachTime = 3;
-  const dummyTrips = [
-    {
-      name: "Tropical Paradise",
-      location: "Murree",
-      duration: 3,
-      persons: 2,
-      price: 149.0,
-      image: "../img/package-1.jpg",
-      description:
-        "Experience the serene beauty of Murree's beaches and rich cultural heritage. Perfect for a quick getaway.",
-    },
-  ];
-  //     function createTripCards(trips) {
-  //     var tripContainer = $('#trips .row');
-
-  //     trips.forEach(function(trip) {
-  //         var tripCardHtml = `
-  //             <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-  //                 <div class="package-item">
-  //                     <div class="overflow-hidden">
-  //                         <img class="img-fluid" src="${trip.image}" alt="">
-  //                     </div>
-  //                     <div class="d-flex border-bottom">
-  //                         <small class="flex-fill text-center border-end py-2"><i class="fa fa-map-marker-alt text-primary me-2"></i>${trip.location}</small>
-  //                         <small class="flex-fill text-center border-end py-2"><i class="fa fa-calendar-alt text-primary me-2"></i>${trip.duration} days</small>
-  //                         <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>${trip.persons} Person</small>
-  //                     </div>
-  //                     <div class="text-center p-4">
-  //                         <h3 class="mb-0">$${trip.price}</h3>
-  //                         <p>${trip.description}</p>
-  //                         <div class="d-flex justify-content-center mb-2">
-  //                             <a href="#" class="btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;">Read More</a>
-  //                             <a href="#" class="btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">Book Now</a>
-  //                         </div>
-  //                     </div>
-  //                 </div>
-  //             </div>
-  //         `;
-
-  //         tripContainer.append(tripCardHtml);
-  //     });
-  // }
-  // function createTripCards(trips) {
-  //     var container = document.getElementById('tripContainer');
-  //     container.innerHTML = ''; // Clear existing content
-
-  //     for (var i = 0; i < currentTrips && i < trips.length; i++) {
-  //         var trip = trips[i];
-  // var cardHtml = `
-  //     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-  //         <div class="package-item">
-  //             <div class="overflow-hidden">
-  //                 <img class="img-fluid" src="${trip.image}" alt="${trip.name}">
-  //             </div>
-  //             <div class="d-flex border-bottom">
-  //                 <small class="flex-fill text-center border-end py-2">
-  //                     <i class="fa fa-map-marker-alt text-primary me-2"></i>${trip.location}
-  //                 </small>
-  //                 <small class="flex-fill text-center border-end py-2">
-  //                     <i class="fa fa-calendar-alt text-primary me-2"></i>${trip.duration} days
-  //                 </small>
-  //                 <small class="flex-fill text-center py-2">
-  //                     <i class="fa fa-user text-primary me-2"></i>${trip.persons} Person
-  //                 </small>
-  //             </div>
-  //             <div class="text-center p-4">
-  //                 <h3 class="mb-0">$${trip.price.toFixed(2)}</h3>
-  //                 <p>${trip.description}</p>
-  //                 <div class="d-flex justify-content-center mb-2">
-  //                     <a href="#" class="btn btn-sm btn-primary px-3 border-end">Check Weater</a>
-  //                     <a href="#" class="btn btn-sm btn-primary px-3">Book Now</a>
-  //                 </div>
-  //             </div>
-  //         </div>
-  //     </div>
-  // `;
-  //         container.innerHTML += cardHtml;
-  //     }
-  //      updateShowMoreButton(trips); // Update the Show More button visibility
-  //     }
-
+  let tripsData = [];
   function createTripCards(trips) {
     var container = document.getElementById("tripContainer");
     container.innerHTML = ""; // Clear existing content
@@ -202,7 +122,7 @@
         imgContainer.className = "overflow-hidden";
         var img = document.createElement("img");
         img.className = "trip-card-image";
-        img.src = trip.image;
+        img.src = trip.imagePath.replace('public\\uploads\\', 'http://localhost:80/uploads/');
         img.alt = trip.name;
         imgContainer.appendChild(img);
 
@@ -218,13 +138,13 @@
         durationSpan.className = "flex-fill text-center border-end py-2";
         durationSpan.innerHTML = `<i class="fa fa-calendar-alt text-primary me-2"></i>${trip.duration} days`;
 
-        var personsSpan = document.createElement("small");
-        personsSpan.className = "flex-fill text-center py-2";
-        personsSpan.innerHTML = `<i class="fa fa-user text-primary me-2"></i>${trip.persons} Person`;
+        // var personsSpan = document.createElement("small");
+        // personsSpan.className = "flex-fill text-center py-2";
+        // personsSpan.innerHTML = `<i class="fa fa-university  text-primary me-2"></i>${trip.name}`;
 
         infoDiv.appendChild(locationSpan);
         infoDiv.appendChild(durationSpan);
-        infoDiv.appendChild(personsSpan);
+        // infoDiv.appendChild(personsSpan);
 
         // Description and button container
         var descDiv = document.createElement("div");
@@ -334,7 +254,7 @@
   }
   function showMoreTrips() {
     currentTrips += tripsToShowEachTime;
-    createTripCards(dummyTrips); // Assuming dummyTrips is your data array
+    createTripCards(tripsData); // Assuming dummyTrips is your data array
   }
 
   // Function to update the visibility of the Show More button
@@ -348,42 +268,29 @@
   }
 
   // Example array of testimonials
-  const testimonials = [
-    {
-      name: "Asif",
-      location: "Islamabad, Pakistan",
-      image: "../img/testimonial-1.jpg",
-      text: "My journey with 'Travel With Us' was nothing short of fabulous. From the bustling markets of Bangkok to the serene beaches of Phuket, every moment ",
-    }
-  ];
+  let testimonials = [];
   // Function to render testimonials dynamically on the page
   function renderTestimonials(testimonialsArray) {
-    const testimonialContainer = document.querySelector(
-      ".testimonial-carousel"
-    );
+    const testimonialContainer = document.querySelector(".testimonial-carousel");
     testimonialContainer.innerHTML = ""; // Clear existing testimonials
 
     testimonialsArray.forEach((testimonial) => {
       const testimonialElement = document.createElement("div");
-      testimonialElement.className =
-        "testimonial-item bg-white text-center border p-4";
+      testimonialElement.className = "testimonial-item bg-white text-center border p-4";
+      const imagePath = testimonial.imagePath.replace('public\\uploads\\', 'http://localhost:80/uploads/');
+
       testimonialElement.innerHTML = `
-      <img class="bg-white rounded-circle shadow p-1 mx-auto mb-3" src="${testimonial.image}" alt="Testimonial from ${testimonial.name}" style="width: 80px; height: 80px;">
-      <h5 class="mb-0">${testimonial.name}</h5>
-      <p class="text-muted">${testimonial.location}</p>
-      <p class="mb-0 testemonial-text">${testimonial.text}</p>
-    `;
+            <img class="bg-white rounded-circle shadow p-1 mx-auto mb-3" src="${imagePath}" alt="Testimonial from ${testimonial.name}" style="width: 80px; height: 80px;">
+            <h5 class="mb-0">${testimonial.name}</h5>
+            <p class="text-muted">${testimonial.address}</p>
+            <p class="mb-0 testimonial-text">${testimonial.reviewText}</p>
+        `;
       testimonialContainer.appendChild(testimonialElement);
     });
 
     // Now that dynamic content has been added, initialize the carousel
     initializeCarousel();
   }
-
-  // Call the function when the document is ready
-  document.addEventListener("DOMContentLoaded", () =>
-    renderTestimonials(testimonials)
-  );
 
   function initializeCarousel() {
     // Check if the carousel was already initialized and destroy it
@@ -417,45 +324,163 @@
     $(".owl-item.active").eq(1).addClass("active"); // Since the center item is the second active item in the array
   }
 
-  document.addEventListener("DOMContentLoaded", () => {
-    renderTestimonials(testimonials);
-  });
   document.addEventListener("DOMContentLoaded", function () {
+    renderTestimonials(testimonials);
+
     var logoutButton = document.getElementById("logoutButton");
 
-    logoutButton.addEventListener("click", function () {
-      // Remove the token from local storage
-      localStorage.clear();
-      // Redirect the user to index.html
-      window.location.href = "../index.html";
-    });
+    // Only add the event listener if the logoutButton exists
+    if (logoutButton) {
+      logoutButton.addEventListener("click", function () {
+        // Remove the token from local storage
+        localStorage.clear();
+        // Redirect the user to index.html
+        window.location.href = "../index.html";
+      });
+    }
   });
 
-  function fetchTrips() {
-    // fetch('URL_OF_YOUR_API') // Replace with your API URL
-    //     .then(response => response.json())
-    //     .then(data => {
-    //         createTripCards(data);
-    //     })
-    //     .catch(error => console.error('Error:', error));
-    const dummyTrips = [
-      {
-        name: "Tropical Paradise",
-        location: "Murree",
-        duration: 3,
-        persons: 2,
-        price: 149.0,
-        image: "../img/package-1.jpg",
-        description:
-          "Experience the serene beauty of Murree's beaches and rich cultural heritage. Perfect for a quick getaway.",
-      }
-    ];
+  //============api to get trips===================
 
-    // Function to create trip cards can then use this dummy data
-    createTripCards(dummyTrips);
+  function fetchTrips() {
+    fetch('http://localhost:80/api/trip', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }
+    })
+      .then(response => response.json())
+      .then(responseData => {
+        const destinationsDropdown = document.getElementById('select1');
+        tripsData = responseData.data;
+        const pathname = window.location.pathname;
+
+        // Clear existing options
+        if (pathname.match(/home\.html$/)) {
+          destinationsDropdown.innerHTML = '';
+          // Populate dropdown with trips
+          tripsData.forEach(trip => {
+            const option = document.createElement('option');
+            option.value = trip.id; // Use trip ID as value
+            option.textContent = trip.location; // Use trip location as label
+            destinationsDropdown.appendChild(option);
+          });
+        }
+        createTripCards(tripsData);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
   }
+
+  //============api to get reviews===================
+  function fetchReviews() {
+    fetch('http://localhost:80/api/review', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }
+    })
+      .then(response => response.json())
+      .then(responseData => {
+        console.log('response.data-====>', responseData)
+        testimonials = responseData
+        renderTestimonials(testimonials)
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  }
+
+
+  //============trip booking api======================
+  const pathname = window.location.pathname;
+  // Clear existing options
+  if (pathname.match(/home\.html$/)) {
+    document.querySelector('form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const selectedTripId = document.getElementById('select1').value;
+      const selectedTrip = tripsData.find(trip => trip.id === selectedTripId);
+
+      const formData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        date: document.getElementById('datetime').value,
+        tripId: selectedTripId,
+        location: selectedTrip ? selectedTrip.location : null, // Include location
+      };
+
+      fetch('http://localhost:80/api/booking', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then(data => {
+          console.log('Booking successful:', data);
+          // Handle success
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          // Handle errors
+        });
+    });
+  }
+
+  //================submiting review api=============
+  // Clear existing options
+  if (pathname.match(/home\.html$/)) {
+    const form = document.getElementById('testimonialForm');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault(); // Prevent the default form submission
+      const formData = new FormData();
+      formData.append('name', document.getElementById('testimonialName').value);
+      formData.append('reviewText', document.getElementById('testimonialText').value);
+      formData.append('address', document.getElementById('testimonialLocation').value);
+
+      // Add file to FormData if it's selected
+      const imageInput = document.getElementById('testimonialImage');
+      if (imageInput.files[0]) {
+        formData.append('image', imageInput.files[0]);
+      }
+      // Create FormData object from the form
+      const apiUrl = 'http://localhost:80/api/review'; // Update with your actual endpoint
+
+      fetch(apiUrl, {
+        method: 'POST',
+        body: formData, // Send the form data
+      })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then(data => {
+          console.log('Success:', data);
+          form.reset();
+          fetchReviews()
+          initializeCarousel();
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+          // Handle errors here (e.g., showing an error message)
+        });
+    });
+  }
+
   function filterTrips(searchQuery) {
-    const filteredTrips = dummyTrips.filter((trip) =>
+    const filteredTrips = tripsData.filter((trip) =>
       trip.location.toLowerCase().includes(searchQuery.toLowerCase())
     );
     createTripCards(filteredTrips);
@@ -464,19 +489,95 @@
     const searchQuery = document.getElementById("searchInput").value;
     filterTrips(searchQuery);
   });
-  $(document).ready(function() {
-      // Existing code ...
+  $(document).ready(function () {
+    // Existing code ...
 
-      // Fetch and display trips
-      fetchTrips();
+    // Fetch and display trips
+    fetchTrips();
+    fetchReviews()
   });
   document
     .getElementById("showMoreBtn")
     .addEventListener("click", showMoreTrips);
-
+  // document.addEventListener('DOMContentLoaded', function () {
+  //   // Fetch and display trips
+  //   fetchTrips();
+  //   fetchReviews()
+  // })
   // Initial load
   $(document).ready(function () {
     currentTrips = tripsToShowEachTime;
-    createTripCards(dummyTrips);
+    createTripCards(tripsData);
   });
 })(jQuery);
+
+
+
+//     function createTripCards(trips) {
+//     var tripContainer = $('#trips .row');
+
+//     trips.forEach(function(trip) {
+//         var tripCardHtml = `
+//             <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+//                 <div class="package-item">
+//                     <div class="overflow-hidden">
+//                         <img class="img-fluid" src="${trip.image}" alt="">
+//                     </div>
+//                     <div class="d-flex border-bottom">
+//                         <small class="flex-fill text-center border-end py-2"><i class="fa fa-map-marker-alt text-primary me-2"></i>${trip.location}</small>
+//                         <small class="flex-fill text-center border-end py-2"><i class="fa fa-calendar-alt text-primary me-2"></i>${trip.duration} days</small>
+//                         <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>${trip.persons} Person</small>
+//                     </div>
+//                     <div class="text-center p-4">
+//                         <h3 class="mb-0">$${trip.price}</h3>
+//                         <p>${trip.description}</p>
+//                         <div class="d-flex justify-content-center mb-2">
+//                             <a href="#" class="btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;">Read More</a>
+//                             <a href="#" class="btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">Book Now</a>
+//                         </div>
+//                     </div>
+//                 </div>
+//             </div>
+//         `;
+
+//         tripContainer.append(tripCardHtml);
+//     });
+// }
+// function createTripCards(trips) {
+//     var container = document.getElementById('tripContainer');
+//     container.innerHTML = ''; // Clear existing content
+
+//     for (var i = 0; i < currentTrips && i < trips.length; i++) {
+//         var trip = trips[i];
+// var cardHtml = `
+//     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+//         <div class="package-item">
+//             <div class="overflow-hidden">
+//                 <img class="img-fluid" src="${trip.image}" alt="${trip.name}">
+//             </div>
+//             <div class="d-flex border-bottom">
+//                 <small class="flex-fill text-center border-end py-2">
+//                     <i class="fa fa-map-marker-alt text-primary me-2"></i>${trip.location}
+//                 </small>
+//                 <small class="flex-fill text-center border-end py-2">
+//                     <i class="fa fa-calendar-alt text-primary me-2"></i>${trip.duration} days
+//                 </small>
+//                 <small class="flex-fill text-center py-2">
+//                     <i class="fa fa-user text-primary me-2"></i>${trip.persons} Person
+//                 </small>
+//             </div>
+//             <div class="text-center p-4">
+//                 <h3 class="mb-0">$${trip.price.toFixed(2)}</h3>
+//                 <p>${trip.description}</p>
+//                 <div class="d-flex justify-content-center mb-2">
+//                     <a href="#" class="btn btn-sm btn-primary px-3 border-end">Check Weater</a>
+//                     <a href="#" class="btn btn-sm btn-primary px-3">Book Now</a>
+//                 </div>
+//             </div>
+//         </div>
+//     </div>
+// `;
+//         container.innerHTML += cardHtml;
+//     }
+//      updateShowMoreButton(trips); // Update the Show More button visibility
+//     }
